@@ -1305,6 +1305,27 @@ public func <(lhs: JSON, rhs: JSON) -> Bool {
     }
 }
 
+
+
+/******
+swift が BOOL を 0, 1 として表現するので、BOOL が NSNumber として処理されてしまう？から　BOOL かどうかを
+http://secondflush2.blog.fc2.com/blog-entry-1020.html
+
+NSNumberは、Cのスカラー（数値）型の値を提供するNSValueのサブクラスです。
+
+符号付きまたは符号無しのchar、short int、int、long int、long long int、float、double、BOOLなどの値の設定とアクセスを行うメソッドを定義します。
+（数値オブジェクトは、必ずしも生成時の型を保持するものではないことに注意してください）
+
+またcompare:メソッドは、二つのNSNumberオブジェクトの順序を決定します。
+
+NSNumberのサブクラスの生成
+
+他のクラスクラスタと同様に、NSNumberのサブクラスを生成する場合は、スーパークラスであるNSValueの原始的なメソッドをオーバーライドする必要があります。
+
+更に非原始的なメソッドの抽象的な実装を利用するために、NSValueメソッドのobjCTypeを使って戻り値に制限を設定した実装をすることができます。
+
+有効な戻り値は『 c 』『 C 』『 s 』『 S 』『 i 』『 I 』『 l 』『 L 』『 q 』『 Q 』『 f 』『 d 』となります。
+*******/
 private let trueNumber = NSNumber(bool: true)
 private let falseNumber = NSNumber(bool: false)
 private let trueObjCType = String.fromCString(trueNumber.objCType)
