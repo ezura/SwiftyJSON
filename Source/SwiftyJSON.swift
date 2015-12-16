@@ -427,6 +427,9 @@ extension String: JSONSubscriptType {
     }
 }
 
+/*
+[] でアクセスしたときに呼ばれる部分
+*/
 extension JSON {
 
     /// If `type` is `.Array`, return json which's object is `array[index]`, otherwise return null json with error.
@@ -523,6 +526,9 @@ extension JSON {
         }
     }
 
+    /*
+    !!!: 可変引数もとれるようにしてる。動作的には上の、配列を渡すときと同じ
+    */
     /**
     Find a json in the complex data structuresby using the Int/String's array.
 
