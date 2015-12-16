@@ -673,6 +673,9 @@ extension JSON: Swift.Printable, Swift.DebugPrintable {
 
 // MARK: - Array
 
+/*
+JSON オブジェクトを作るときに渡した値を JSON の配列として変換できるときはその型として返す (返せなかったら nil)
+*/
 extension JSON {
 
     //Optional [JSON]
@@ -715,6 +718,10 @@ extension JSON {
 
 // MARK: - Dictionary
 
+/*
+JSON オブジェクトを作るときに渡した値を String をキーとし、JSON を値とする　dictionary　として変換できるときはその型として返す (返せなかったら nil)
+キーはそのままで、Value を JSON オブジェクトにした dictionary を返す
+*/
 extension JSON {
 
     //Optional [String : JSON]
@@ -756,7 +763,9 @@ extension JSON {
 }
 
 // MARK: - Bool
-
+/*
+JSON オブジェクトを作るときに渡した値を Bool 型として変換できるときはその型として返す (返せなかったら nil)
+*/
 extension JSON: Swift.BooleanType {
 
     //Optional bool
@@ -795,7 +804,9 @@ extension JSON: Swift.BooleanType {
 }
 
 // MARK: - String
-
+/*
+JSON オブジェクトを作るときに渡した値を String 型として変換できるときはその型として返す (返せなかったら nil)
+*/
 extension JSON {
 
     //Optional string
@@ -838,6 +849,9 @@ extension JSON {
 }
 
 // MARK: - Number
+/*
+JSON オブジェクトを作るときに渡した値を NSNumber 型として変換できるときはその型として返す (返せなかったら nil)
+*/
 extension JSON {
 
     //Optional number
@@ -878,6 +892,9 @@ extension JSON {
 }
 
 //MARK: - Null
+/*
+JSON オブジェクトを作るときに渡した値が NSNULL のときはその型として返す (違かったら nil)
+*/
 extension JSON {
 
     public var null: NSNull? {
@@ -902,6 +919,9 @@ extension JSON {
 }
 
 //MARK: - URL
+/*
+JSON オブジェクトを作るときに渡した値を NSURL 型として変換できるときはその型として返す (返せなかったら nil)
+*/
 extension JSON {
 
     //Optional URL
@@ -925,7 +945,9 @@ extension JSON {
 }
 
 // MARK: - Int, Double, Float, Int8, Int16, Int32, Int64
-
+/*
+JSON オブジェクトを作るときに渡した値を数値型として変換できるときはその型として返す (返せなかったら nil またはデフォルトの値: 0 など)
+*/
 extension JSON {
 
     public var double: Double? {
@@ -1194,6 +1216,9 @@ extension JSON {
 }
 
 //MARK: - Comparable
+/*
+JSON にいろんなリテラルが渡せる。渡したリテラルを比較するための処理
+*/
 extension JSON : Swift.Comparable {}
 
 public func ==(lhs: JSON, rhs: JSON) -> Bool {
