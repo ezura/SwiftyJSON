@@ -546,6 +546,9 @@ extension JSON {
 
 // MARK: - LiteralConvertible
 
+/*
+リテラル受け入れられるようにしてる
+*/
 extension JSON: Swift.StringLiteralConvertible {
 
     public init(stringLiteral value: StringLiteralType) {
