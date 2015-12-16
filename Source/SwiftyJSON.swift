@@ -608,7 +608,13 @@ extension JSON: Swift.NilLiteralConvertible {
 }
 
 // MARK: - Raw
-
+/*
+RawRepresentable
+enum の rawValue として使えるようになる
+このライブラリ内で使ってるわけではないみたい。
+これ扱うためには Equatable 必要
+参考: https://ez-net.jp/article/6E/p1hF8GZD/L71D-l9SfKfl/
+*/
 extension JSON: Swift.RawRepresentable {
 
     public init?(rawValue: AnyObject) {
