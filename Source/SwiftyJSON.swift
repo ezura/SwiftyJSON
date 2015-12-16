@@ -656,8 +656,24 @@ extension JSON: Swift.RawRepresentable {
 
 // MARK: - Printable, DebugPrintable
 
-extension JSON: Swift.Printable, Swift.DebugPrintable {
+//extension JSON: Swift.Printable, Swift.DebugPrintable {
+//
+//    public var description: String {
+//        if let string = self.rawString(options:.PrettyPrinted) {
+//            return string
+//        } else {
+//            return "unknown"
+//        }
+//    }
+//
+//    public var debugDescription: String {
+//        return description
+//    }
+//}
 
+
+extension JSON: Swift.Printable {
+    
     public var description: String {
         if let string = self.rawString(options:.PrettyPrinted) {
             return string
@@ -665,7 +681,10 @@ extension JSON: Swift.Printable, Swift.DebugPrintable {
             return "unknown"
         }
     }
+}
 
+extension JSON: Swift.DebugPrintable {
+    
     public var debugDescription: String {
         return description
     }
