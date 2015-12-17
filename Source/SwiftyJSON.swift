@@ -183,6 +183,15 @@ public struct JSON {
     public static var null: JSON { get { return JSON(NSNull()) } }
 }
 
+/*
+Swift.SequenceType は次のもの、次のものって返すイメージ
+でも、"もの" っていうのは実体があるとは限らない。純粋に次をとれる。最後は nil
+次に進んだとき、自分の状態も次に進む。自らの状態の遷移みたいな感じ。
+
+CollectionType は Swift.SequenceType を継承してる。
+Swift.SequenceType の概念に "最初と最後が決定されてる" "途中にアクセスできる = 飛び越えられる" を加えることで
+所属するものをより具体化させてる感じがする。だから sort ができる。(自身を変えることになるから MutableCollectionType になるけど、概念的には合ってるはず)
+*/
 // MARK: - CollectionType, SequenceType, Indexable
 extension JSON : Swift.CollectionType, Swift.SequenceType, Swift.Indexable {
 
