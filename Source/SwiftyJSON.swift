@@ -191,7 +191,7 @@ Swift.SequenceType は次のもの、次のものって返すイメージ
 
 CollectionType は Swift.SequenceType を継承してる。
 Swift.SequenceType の概念に "最初と最後が決定されてる" "途中にアクセスできる = 飛び越えられる" を加えることで
-所属するものをより具体化させてる感じがする。だから sort ができる。(自身を変えることになるから MutableCollectionType になるけど、概念的には合ってるはず)
+所属するものをより具体化させてる感じがする。find で状態の位置を特定できる感じ
 */
 // MARK: - CollectionType, SequenceType, Indexable
 extension JSON : Swift.CollectionType, Swift.SequenceType, Swift.Indexable {
