@@ -18,7 +18,7 @@ NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQue
     }
 }
 
-XCPSetExecutionShouldContinueIndefinitely()
+//XCPSetExecutionShouldContinueIndefinitely()
 
 func open (path: String, utf8: NSStringEncoding = NSUTF8StringEncoding) -> String? {
     do {
@@ -62,10 +62,76 @@ func open (path: String, utf8: NSStringEncoding = NSUTF8StringEncoding) -> Strin
 //
 ////
 ////let image = UIImage(named: "2020337")
+//
+//
+//private let trueNumber = NSNumber(bool: true)
+//private let falseNumber = NSNumber(bool: false)
+//private let trueObjCType = String.fromCString(trueNumber.objCType)
+//private let falseObjCType = String.fromCString(falseNumber.objCType)
+//trueNumber.objCType
+//trueNumber.dynamicType
+//
+//let a = NSNumber(booleanLiteral: true)
+//let b = NSNumber(bool: true)
+//b.type
+//var a: JSON = true
+//a       // => "aaa"
+//a.dynamicType  // SwiftyJSON.JSON.Type
+//
+//class NormalClass { var a = "aaa"}
+//
+//class DescriptionSample: Swift.Printable, Swift.DebugPrintable {
+//    var m = "sample"
+//    var description: String {
+//        return "\(m) description"
+//    }
+//    var debugDescription: String {
+//        return "\(m) debugDescription"
+//    }
+//}
+//
+//let a = NormalClass()
+//print("print", a)
+//debugPrint("debugPrint", a)
+//"\(a)"
+//
+//let b = DescriptionSample()
+//print(b)
+//debugPrint(b)
+//"\(b)"
+//
+//enum SampleEnum: Swift.Printable {
+//    case a, b
+//    var description: String {
+//    return " description"
+//    }
+//    var debugDescription: String {
+//        return "\(m) debugDescription"
+//    }
+//}
 
+struct SampleStruct {}
 
+extension SampleStruct : SequenceType {
+    typealias Generator = SampleGenerator
+    func generate() -> Generator {
+        return Generator()
+    }
+}
 
+struct SampleGenerator : GeneratorType {
+    typealias Element = Int
+    
+    var index = 0
+    mutating func next() -> Element? {
+        index++
+        if (index > 10) { return nil }
+        return Int(arc4random())
+    }
+}
 
-
-
+let sampleStruct = SampleStruct()
+sampleStruct.map { $0 }
+sampleStruct.maxElement()
+sampleStruct.reduce(0, combine: { $0 + $1 } )
 
