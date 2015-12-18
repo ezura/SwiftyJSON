@@ -9,9 +9,9 @@ NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQue
     
     guard let data = data else { return; }
     
-    // SwiftyJSON 使わない場合
+    // SwiftyJSON を使わない場合
     do {
-        let json: AnyObject = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers)
+        let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers)
         if let query = json["query"] as? NSDictionary {
             if let normalized = query["normalized"] as? NSArray {
                 if let firstNormarized = normalized[0] as? NSDictionary {
@@ -23,18 +23,13 @@ NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQue
         }
     } catch let aError as NSError {}
     
-    // SwiftyJSON 使った場合
+    // SwiftyJSON を使った場合
     let json = JSON(data:data)
     if let normarizedKeyword = json["query"]["normalized"][0]["to"].string {
         normarizedKeyword
     }
-    
-    if let title = json["query"]["pages"]["927971"]["title"].string {
-        title
-    }
-    
-    if let pageid = json["query"]["pages"]["927971"]["pageid"].int {
-        pageid
+    if let normarizedKeyword_ = json["query", "normalized", 0, "to"].string {
+        normarizedKeyword_
     }
 }
 
@@ -155,4 +150,15 @@ let sampleStruct = SampleStruct()
 sampleStruct.map { $0 }
 sampleStruct.maxElement()
 sampleStruct.reduce(0, combine: { $0 + $1 } )
+
+
+let jsonStr:JSON = "aaa"
+let jsonBool:JSON = true
+let json = JSON(["sample": [1, "a", true], "str": "abc"])
+json["sample"]
+for element in json { print(element) }
+json.map({ $0 })
+json.first
+
+json.description
 
