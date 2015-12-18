@@ -6,9 +6,29 @@ import UIKit
 let url = NSURL(string: "https://ja.wikipedia.org/w/api.php?format=json&action=query&prop=categories&titles=swift")
 var request = NSURLRequest(URL: url!)
 NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response, data, error) -> Void in
-    let json = JSON(data:data!)
-    let json_ = JSON(data!)
-    try! String(contentsOfURL: url!, encoding: NSUTF8StringEncoding)
+    
+    guard let data = data else { return; }
+    
+    // SwiftyJSON 使わない場合
+    do {
+        let json: AnyObject = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers)
+        if let query = json["query"] as? NSDictionary {
+            if let normalized = query["normalized"] as? NSArray {
+                if let firstNormarized = normalized[0] as? NSDictionary {
+                    if let to = firstNormarized["to"] as? String {
+                        to
+                    }
+                }
+            }
+        }
+    } catch let aError as NSError {}
+    
+    // SwiftyJSON 使った場合
+    let json = JSON(data:data)
+    if let normarizedKeyword = json["query"]["normalized"][0]["to"].string {
+        normarizedKeyword
+    }
+    
     if let title = json["query"]["pages"]["927971"]["title"].string {
         title
     }
@@ -18,18 +38,19 @@ NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQue
     }
 }
 
-//XCPSetExecutionShouldContinueIndefinitely()
 
-func open (path: String, utf8: NSStringEncoding = NSUTF8StringEncoding) -> String? {
-    do {
-        let contents = try String(contentsOfFile: path, encoding: utf8)
-        return contents;
-    }
-    catch {
-        return nil
-    }
-}
+XCPSetExecutionShouldContinueIndefinitely()
 
+//func open (path: String, utf8: NSStringEncoding = NSUTF8StringEncoding) -> String? {
+//    do {
+//        let contents = try String(contentsOfFile: path, encoding: utf8)
+//        return contents;
+//    }
+//    catch {
+//        return nil
+//    }
+//}
+//
 //func calc (nums :[Int]) -> Int {
 //    var sum = 0
 //    for (var i = 0; i < nums.count; i++) {
