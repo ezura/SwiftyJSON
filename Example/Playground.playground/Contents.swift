@@ -150,9 +150,6 @@ struct SampleStruct {
 //}
 
 let sampleStruct = SampleStruct()
-sampleStruct.map { $0 }
-sampleStruct.maxElement()
-sampleStruct.reduce(0, combine: { $0 + $1 } )
 
 sampleStruct["sample"]
 sampleStruct.map({ $0 })
@@ -160,6 +157,10 @@ sampleStruct.first
 for element in sampleStruct { print(element) }
 if (sampleStruct) {}
 
+
+//sampleStruct.map { $0 }
+//sampleStruct.maxElement()
+//sampleStruct.reduce(0, combine: { $0 + $1 } )
 
 let jsonStr:JSON = "aaa"
 let jsonBool:JSON = true
