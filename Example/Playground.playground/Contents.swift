@@ -140,6 +140,16 @@ extension SampleStruct {
             object = key
         }
     }
+    
+    subscript(key: Int) -> SampleStruct {
+        get {
+            print("int でアクセス")
+            return self
+        }
+        set {
+            object = key
+        }
+    }
 }
 
 //extension SampleStruct : SequenceType {
