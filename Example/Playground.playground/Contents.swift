@@ -141,15 +141,15 @@ extension SampleStruct {
         }
     }
     
-    subscript(key: Int) -> SampleStruct {
-        get {
-            print("int でアクセス")
-            return self
-        }
-        set {
-            object = key
-        }
-    }
+//    subscript(key: Int) -> SampleStruct {
+//        get {
+//            print("int でアクセス")
+//            return self
+//        }
+//        set {
+//            object = key
+//        }
+//    }
 }
 
 extension SampleStruct : SequenceType {
@@ -167,6 +167,16 @@ struct SampleGenerator : GeneratorType {
         index++
         if (index > 10) { return nil }
         return Int(arc4random())
+    }
+}
+
+extension SampleStruct : CollectionType, Indexable {
+    typealias Index = Int
+    var startIndex: Index { return 0 }
+    var endIndex: Index { return 10 }
+    
+    subscript (position: Index) -> Generator.Element {
+        return position
     }
 }
 
