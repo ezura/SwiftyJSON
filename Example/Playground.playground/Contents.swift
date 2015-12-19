@@ -130,6 +130,17 @@ struct SampleStruct {
     var object:AnyObject?
 }
 
+// [] を実装
+extension SampleStruct {
+    subscript(key: String) -> SampleStruct {
+        get {
+            return self
+        }
+        set {
+            object = key
+        }
+    }
+}
 
 //extension SampleStruct : SequenceType {
 //    typealias Generator = SampleGenerator
