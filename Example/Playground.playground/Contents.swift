@@ -126,7 +126,10 @@ XCPSetExecutionShouldContinueIndefinitely()
 //    }
 //}
 
-struct SampleStruct {}
+struct SampleStruct {
+    var object:AnyObject?
+}
+
 
 //extension SampleStruct : SequenceType {
 //    typealias Generator = SampleGenerator
