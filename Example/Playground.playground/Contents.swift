@@ -128,28 +128,34 @@ XCPSetExecutionShouldContinueIndefinitely()
 
 struct SampleStruct {}
 
-extension SampleStruct : SequenceType {
-    typealias Generator = SampleGenerator
-    func generate() -> Generator {
-        return Generator()
-    }
-}
-
-struct SampleGenerator : GeneratorType {
-    typealias Element = Int
-    
-    var index = 0
-    mutating func next() -> Element? {
-        index++
-        if (index > 10) { return nil }
-        return Int(arc4random())
-    }
-}
+//extension SampleStruct : SequenceType {
+//    typealias Generator = SampleGenerator
+//    func generate() -> Generator {
+//        return Generator()
+//    }
+//}
+//
+//struct SampleGenerator : GeneratorType {
+//    typealias Element = Int
+//    
+//    var index = 0
+//    mutating func next() -> Element? {
+//        index++
+//        if (index > 10) { return nil }
+//        return Int(arc4random())
+//    }
+//}
 
 let sampleStruct = SampleStruct()
 sampleStruct.map { $0 }
 sampleStruct.maxElement()
 sampleStruct.reduce(0, combine: { $0 + $1 } )
+
+sampleStruct["sample"]
+sampleStruct.map({ $0 })
+sampleStruct.first
+for element in sampleStruct { print(element) }
+if (sampleStruct) {}
 
 
 let jsonStr:JSON = "aaa"
@@ -161,4 +167,7 @@ json.map({ $0 })
 json.first
 
 json.description
+
+for element in jsonBool { print("aaa") }
+
 
