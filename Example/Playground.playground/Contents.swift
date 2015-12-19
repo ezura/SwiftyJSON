@@ -152,23 +152,27 @@ extension SampleStruct {
     }
 }
 
-//extension SampleStruct : SequenceType {
-//    typealias Generator = SampleGenerator
-//    func generate() -> Generator {
-//        return Generator()
-//    }
-//}
-//
-//struct SampleGenerator : GeneratorType {
-//    typealias Element = Int
-//    
-//    var index = 0
-//    mutating func next() -> Element? {
-//        index++
-//        if (index > 10) { return nil }
-//        return Int(arc4random())
-//    }
-//}
+extension SampleStruct : SequenceType {
+    typealias Generator = SampleGenerator
+    func generate() -> Generator {
+        return Generator()
+    }
+}
+
+struct SampleGenerator : GeneratorType {
+    typealias Element = Int
+    
+    var index = 0
+    mutating func next() -> Element? {
+        index++
+        if (index > 10) { return nil }
+        return Int(arc4random())
+    }
+}
+
+let array = [1, 2, 3]
+array.map({ $0 })
+for var element in array {}
 
 let sampleStruct = SampleStruct()
 
