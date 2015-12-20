@@ -21,46 +21,23 @@ NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQue
                 }
             }
         }
-    } catch let aError as NSError {}
+    } catch let jsonError as NSError {}
     
     // SwiftyJSON を使った場合
     let json = JSON(data:data)
     if let normarizedKeyword = json["query"]["normalized"][0]["to"].string {
         normarizedKeyword
     }
+    
     if let normarizedKeyword_ = json["query", "normalized", 0, "to"].string {
         normarizedKeyword_
     }
 }
 
 
-XCPSetExecutionShouldContinueIndefinitely()
+//XCPSetExecutionShouldContinueIndefinitely()
 
-//func open (path: String, utf8: NSStringEncoding = NSUTF8StringEncoding) -> String? {
-//    do {
-//        let contents = try String(contentsOfFile: path, encoding: utf8)
-//        return contents;
-//    }
-//    catch {
-//        return nil
-//    }
-//}
-//
-//func calc (nums :[Int]) -> Int {
-//    var sum = 0
-//    for (var i = 0; i < nums.count; i++) {
-//        let num = nums[i]
-//        
-//        for (var j = 0; j < i; j++) {
-//            if (num < nums[j]) {
-//                sum++
-//            }
-//        }
-//    }
-//    return sum
-//}
-//
-//
+
 //"/Users/tf_member/workspace/private/swift/SwiftyJSON/Example/Playground.playground/Resources/SwiftyJSONTests.json"
 //let bundle = NSBundle.mainBundle()
 //let path = NSBundle.mainBundle().pathForResource("crossing", ofType: "txt")
