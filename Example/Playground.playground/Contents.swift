@@ -180,6 +180,10 @@ extension SampleStruct : CollectionType, Indexable {
     }
 }
 
+extension SampleStruct : BooleanType {
+    var boolValue:Bool { return true }
+}
+
 let array = [1, 2, 3]
 array.map({ $0 })
 for var element in array {}
