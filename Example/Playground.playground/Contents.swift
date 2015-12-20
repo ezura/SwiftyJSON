@@ -118,18 +118,21 @@ extension SampleStruct {
         }
     }
     
-//    subscript(key: Int) -> SampleStruct {
+    subscript(path: AnyObject...) -> SampleStruct {
+        for element in path { print(element) }
+        return self
+    }
+    // 上はこう書いた時と同じです
+//    subscript(path: AnyObject...) -> SampleStruct {
 //        get {
-//            print("int でアクセス")
+//            for element in path { print(element) }
 //            return self
-//        }
-//        set {
-//            object = key
 //        }
 //    }
 }
 
 extension SampleStruct : SequenceType {
+    // イテレータのようなもの
     typealias Generator = SampleGenerator
     func generate() -> Generator {
         return Generator()
@@ -141,13 +144,15 @@ struct SampleGenerator : GeneratorType {
     
     var index = 0
     mutating func next() -> Element? {
-        index++
+        // 次がない場合は nil を返します
         if (index > 10) { return nil }
-        return Int(arc4random())
+        return index++
+//        index++
+//        return Int(arc4random())
     }
 }
 
-extension SampleStruct : CollectionType, Indexable {
+extension SampleStruct : CollectionType {
     typealias Index = Int
     var startIndex: Index { return 0 }
     var endIndex: Index { return 10 }
@@ -168,10 +173,15 @@ for var element in array {}
 let sampleStruct = SampleStruct()
 
 sampleStruct["sample"]
+sampleStruct[1, 2, 3, "a"]
+
 sampleStruct.map({ $0 })
-sampleStruct.first
 for element in sampleStruct { print(element) }
+
+sampleStruct.first
+
 if (sampleStruct) {}
+while (!sampleStruct) {}
 
 
 //sampleStruct.map { $0 }
