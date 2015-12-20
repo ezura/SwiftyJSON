@@ -219,16 +219,52 @@ extension SampleStruct {
     }
 }
 
+extension SampleStruct : SequenceType {
+    // イテレータのようなもの
+    typealias Generator = SampleGenerator
+    func generate() -> Generator {
+        return Generator()
+    }
+}
+
+struct SampleGenerator : GeneratorType {
+    typealias Element = Int
+    
+    var index = 0
+    mutating func next() -> Element? {
+        // 次がない場合は nil を返します
+        if (index > 10) { return nil }
+        return index++
+    }
+}
+
+extension SampleStruct : CollectionType {
+    typealias Index = Int
+    var startIndex: Index { return 0 }
+    var endIndex: Index { return 10 }
+    
+    subscript (position: Index) -> Generator.Element {
+        return position
+    }
+}
+
+extension SampleStruct : BooleanType {
+    var boolValue:Bool { return true }
+}
+
 let sampleStruct = SampleStruct()
 
-// 以下は今の状態では全てエラーです
+// try1
 sampleStruct["sample"]
 sampleStruct["sample"]["sample"]
 
+// try2
 sampleStruct.map({ $0 })
 for element in sampleStruct { print(element) }
 
+// try3
 sampleStruct.first
 
+// try4
 if (sampleStruct) {}
 while (!sampleStruct) {}

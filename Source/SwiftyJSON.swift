@@ -505,7 +505,7 @@ extension JSON {
     }
 
     /*
-    !!!: ここの処理おもしろい。再帰
+    再帰して目的のオブジェクトまで処理してる
     */
     /**
     Find a json in the complex data structuresby using the Int/String's array.
@@ -566,7 +566,7 @@ extension JSON {
 // MARK: - LiteralConvertible
 
 /*
-リテラル受け入れられるようにしてる
+いろんなリテラルを受け入れられるようにしてる
 */
 extension JSON: Swift.StringLiteralConvertible {
 
@@ -699,7 +699,7 @@ extension JSON: Swift.RawRepresentable {
 //    }
 //}
 
-
+// 上のコードを分割しました
 extension JSON: Swift.Printable {
     
     public var description: String {
@@ -1264,7 +1264,7 @@ extension JSON {
 
 //MARK: - Comparable
 /*
-JSON にいろんなリテラルが渡せる。渡したリテラルを比較するための処理
+JSON にいろんな型が渡せる。渡した型を比較するための処理
 */
 extension JSON : Swift.Comparable {}
 
@@ -1355,23 +1355,11 @@ public func <(lhs: JSON, rhs: JSON) -> Bool {
 
 
 /******
-swift が BOOL を 0, 1 として表現するので、BOOL が NSNumber として処理されてしまう？から　BOOL かどうかを
-http://secondflush2.blog.fc2.com/blog-entry-1020.html
+NSNumber に BOOL 値も含まれてしまうので、objCType を使って、BOOL かどうかを判定します。
 
-NSNumberは、Cのスカラー（数値）型の値を提供するNSValueのサブクラスです。
-
-符号付きまたは符号無しのchar、short int、int、long int、long long int、float、double、BOOLなどの値の設定とアクセスを行うメソッドを定義します。
-（数値オブジェクトは、必ずしも生成時の型を保持するものではないことに注意してください）
-
-またcompare:メソッドは、二つのNSNumberオブジェクトの順序を決定します。
-
-NSNumberのサブクラスの生成
-
-他のクラスクラスタと同様に、NSNumberのサブクラスを生成する場合は、スーパークラスであるNSValueの原始的なメソッドをオーバーライドする必要があります。
-
-更に非原始的なメソッドの抽象的な実装を利用するために、NSValueメソッドのobjCTypeを使って戻り値に制限を設定した実装をすることができます。
-
-有効な戻り値は『 c 』『 C 』『 s 』『 S 』『 i 』『 I 』『 l 』『 L 』『 q 』『 Q 』『 f 』『 d 』となります。
+objCType の参考: http://secondflush2.blog.fc2.com/blog-entry-1020.html
+char、short int、int、long int、long long int、float、double、BOOL
+『 c 』『 C 』『 s 』『 S 』『 i 』『 I 』『 l 』『 L 』『 q 』『 Q 』『 f 』『 d 』
 *******/
 private let trueNumber = NSNumber(bool: true)
 private let falseNumber = NSNumber(bool: false)
